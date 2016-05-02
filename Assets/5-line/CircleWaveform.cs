@@ -61,8 +61,8 @@ namespace AudioVisualizer
 		//draw a circle around this object in scene view
 		void OnDrawGizmos()
 		{
-			Gizmos.color = Color.white;
-			Gizmos.DrawSphere (this.transform.position, 1);
+//			Gizmos.color = Color.white;
+//			Gizmos.DrawSphere (this.transform.position, 1);
 		}
 
 		//make everything rotate faster for a short period of time.
