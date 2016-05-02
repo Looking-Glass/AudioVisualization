@@ -9,10 +9,12 @@ public class ControlTriangle : AudioBase {
 	public FrequencyRange frequencyRangeDecibal_ = FrequencyRange.Decibal;
 	public FrequencyRange frequencyRangeHigh = FrequencyRange.High;
 	public FrequencyRange frequencyRangeBass = FrequencyRange.Bass;
-
-	public GameObject[] volumeGO;
-	public GameObject[] highPitchGO;
-	public GameObject[] bassGO;
+	public Transform volumeContainer;
+	private List<Transform> volumeGO = new List<Transform>();
+	public Transform highPitchContainer;
+	private List<Transform> highPitchGO = new List<Transform>();
+	public Transform bassContainer;
+	private List<Transform> bassGO = new List<Transform>();
 	public Transform camera;
 	private Vector3 cameraOriginalPos;
 	public Transform triangleLight;
@@ -27,6 +29,12 @@ public class ControlTriangle : AudioBase {
 
 	float easetime = 0.5f;
 	void Start(){
+		volumeGO.Clear ();
+		volumeGO = volumeContainer.GetComponentsInChildren<Transform> ().ToList();
+		highPitchGO.Clear ();
+		highPitchGO = highPitchContainer.GetComponentsInChildren<Transform> ().ToList();
+		bassGO.Clear ();
+		bassGO = bassContainer.GetComponentsInChildren<Transform> ().ToList();
 	}
 	void OnEnable(){
 
@@ -50,10 +58,6 @@ public class ControlTriangle : AudioBase {
 
 		hypercubeCamera.localEulerAngles = Vector3.zero;
 		camera.localEulerAngles += new Vector3(0,direction*0.5f,0);
-//		cameraTargetAngle = camera.localEulerAngles + new Vector3(0,direction*0.5f,0);
-//		cameraTargetAngle.x = 0;
-//		cameraTargetAngle.z = 0;
-//		camera.localEulerAngles = cameraTargetAngle;
 
 		float[] musicData_Decibal;
 		float[] musicData_high;
@@ -84,7 +88,7 @@ public class ControlTriangle : AudioBase {
 //			return;
 //		}
 		int i = 0;
-		while (i < volumeGO.Length) {
+		while (i < volumeGO.Count) {
 			float height = MathTool.Remap(musicData_Decibal [i],0,volumeHighest,heightMin,heightMax);
 			volumeGO[i].transform.DOScaleY(height,easetime).SetEase(Ease.OutCubic);
 			i++;
@@ -125,7 +129,7 @@ public class ControlTriangle : AudioBase {
 	}
 	public void HighBeat(){
 		int i = 0;
-		while (i < highPitchGO.Length) {
+		while (i < highPitchGO.Count) {
 
 			DOTween.Kill (highPitchGO [i].transform);
 			highPitchGO [i].transform.localScale = new Vector3 (highPitchGO [i].transform.localScale.x, originalHeight, highPitchGO [i].transform.localScale.z);
@@ -135,7 +139,7 @@ public class ControlTriangle : AudioBase {
 	}
 	public void BaseBeat(){
 		int i = 0;
-		while (i < bassGO.Length) {
+		while (i < bassGO.Count) {
 			DOTween.Kill (bassGO [i].transform);
 			bassGO [i].transform.localScale = new Vector3 (bassGO [i].transform.localScale.x, originalHeight, bassGO [i].transform.localScale.z);
 			bassGO[i].transform.DOScaleY((heightMin+heightMax)/2,easetime).SetEase(Ease.OutCubic).SetLoops(2,LoopType.Yoyo);

@@ -8,6 +8,7 @@ public class CustomEffect{
 	public Vector3 camera_Pos = new Vector3 (0, 0, 0);
 	public Vector3 camera_Angle = new Vector3 (15, 0, 0);
 	public Vector3 camera_Scale = new Vector3 (7, 7, 7);
+	public float fileofView = 1;
 }
 public class Controller : MonoBehaviour {
 	#region Singleton
