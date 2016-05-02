@@ -36,7 +36,6 @@ public class CityController : AudioBase {
 	public Color currentColor;
 
 	void InitCubes(){
-		
 		for (int i = 0; i < cubesNum; i++) {
 			if (true) {
 				

@@ -26,7 +26,7 @@ namespace BoidBehavior{
 
 		}
 		void OnEnable(){
-			_camera = Controller.instance.hypercubeContainer;
+			_camera = Controller.instance.mainCamera;
 			InitialBoid ();
 		}
 		void OnDisable(){

@@ -38,7 +38,7 @@ public class ControlTriangle : AudioBase {
 	}
 	void OnEnable(){
 
-		hypercubeContainer = Controller.instance.hypercubeContainer;
+		hypercubeContainer = Controller.instance.mainCamera;
 		hypercubeCamera = Controller.instance.mainCamera;
 	}
 	void Update(){

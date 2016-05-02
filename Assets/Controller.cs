@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using AudioVisualizer;
-
+using DG.Tweening;
 [System.Serializable]
 public class CustomEffect{
 	public GameObject effect;
@@ -26,14 +26,14 @@ public class Controller : MonoBehaviour {
 	}
 	#endregion
 
-	public Transform hypercubeContainer;
+//	public Transform hypercubeContainer;
 	public Transform mainCamera;
 	// Use this for initialization
 	public CustomEffect[] effects;
 	public int index = 0; 
 	void Start () {
 //		mainCamera.transform.parent = hypercubeContainer;
-		hypercubeContainer = mainCamera;
+//		hypercubeContainer = mainCamera;
 //		mainCamera.localPosition = Vector3.zero;
 //		mainCamera.localScale = Vector3.one;
 //		mainCamera.localEulerAngles = new Vector3(180,0,0);
@@ -69,17 +69,20 @@ public class Controller : MonoBehaviour {
 
 	void Switch(int targetIndex){
 		for (int i =0;i<effects.Length;i++) {
-			if (i == targetIndex) {
-				effects [i].effect.SetActive (true);
-				hypercubeContainer.transform.parent = null;
-				hypercubeContainer.transform.position = effects [i].camera_Pos;
-				hypercubeContainer.transform.localEulerAngles = effects [i].camera_Angle;
-				mainCamera.transform.localScale = effects [i].camera_Scale;
-			} else {
-
+			if (i != targetIndex) {
 				effects [i].effect.SetActive (false);
 			}
 
+		}
+		for (int i = 0; i < effects.Length; i++) {
+			if (i == targetIndex) {
+				effects [i].effect.SetActive (true);
+				DOTween.Kill (mainCamera);
+				mainCamera.transform.parent = null;
+				mainCamera.transform.position = effects [i].camera_Pos;
+				mainCamera.transform.localEulerAngles = effects [i].camera_Angle;
+				mainCamera.transform.localScale = effects [i].camera_Scale;
+			}
 		}
 	}
 
