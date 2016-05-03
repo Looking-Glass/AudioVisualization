@@ -101,7 +101,7 @@ namespace AudioVisualizer
 			musicData_Decibal = AudioSampler.instance.GetAudioSamples (AudioSampler.instance.audioSource, dec, true);
 			UpdateData (musicData_Decibal);
 			float beat = MathTool.Remap(musicData_Decibal [0],0,volumeHighest,0,1f);
-			if (beat > 0.5f) {
+			if (beat > 0.8f) {
 				SendRipple(propegationTime);
 			}
 

@@ -36,15 +36,9 @@ public class CityController : AudioBase {
 	public Color currentColor;
 
 	void InitCubes(){
-		for (int i = 0; i < cubesNum; i++) {
-			if (true) {
-				
-			}
-			GameObject cube = Instantiate (cityCube[Random.Range(0,cityCube.Length)]) as GameObject;
-			cube.transform.parent = cityContainer;
-			ResetCube (cube);
-			cityCubes.Add (cube);
-		}
+//		for (int i = 0; i < cubesNum; i++) {
+//			CreateCity ();
+//		}
 	}
 	void OnEnable(){
 		tex_tilingX = planeMat.GetTextureScale ("_MainTex").x;
@@ -70,34 +64,44 @@ public class CityController : AudioBase {
 		float beat = MathTool.Remap(musicData_Decibal [0],0,volumeHighest,0,1f);
 		if (beat>0.5f) {
 			targetSpeed = 3;
+			CreateCity2 ();
 //			multiplier_tiltX = -10;
 		}
-		speed_multiplier += (targetSpeed - speed_multiplier) / 20f;
+		speed_multiplier += (targetSpeed - speed_multiplier) / 50f;
 
-		multiplier_tiltY += (target_multiplier_tiltY - multiplier_tiltY) / 50;	
+		multiplier_tiltY += (target_multiplier_tiltY - multiplier_tiltY) / 100;	
 		multiplier_tiltZ = multiplier_tiltY * -1f;
 
 		Vector2 offset = planeMat.GetTextureOffset ("_MainTex");
 		planeMat.SetTextureOffset("_MainTex", new Vector2(offset.x + texSpeedZ * speed_multiplier , 0));
 
-		wholeContainer.transform.localEulerAngles = new Vector3 (multiplier_tiltX, multiplier_tiltY, multiplier_tiltZ);
+//		wholeContainer.transform.localEulerAngles = new Vector3 (multiplier_tiltX, multiplier_tiltY, multiplier_tiltZ);
 
+		wholeContainer.transform.localEulerAngles = new Vector3 (multiplier_tiltX, 0, 0);
+		Controller.instance.mainCamera.localEulerAngles = new Vector3(0,multiplier_tiltY, multiplier_tiltZ);
 		targetSpeed -= 0.01f;
 		if (targetSpeed <0) {
 			targetSpeed = 0;
 		}
-		target_multiplier_tiltY += (0 - target_multiplier_tiltY) / 10;
+		target_multiplier_tiltY += (0 - target_multiplier_tiltY) / 50;
 
 		currentColor += (targetColor - currentColor) / 20;
 
-
+		for(var i = cityCubes.Count - 1; i > -1; i--)
+		{
+			if (cityCubes[i] == null)
+				cityCubes.RemoveAt(i);
+		}
 
 		for (int i = 0; i < cityCubes.Count; i++) {
 			GameObject cube = cityCubes [i] as GameObject;
-			cube.transform.localPosition += new Vector3 (cube.transform.localPosition.x*speedX*speed_multiplier, 0, speedZ * speed_multiplier);
-			if (cube.transform.localPosition.z  < -7) {
-				ResetCube (cube);
+			if (cube != null) {
+				cube.transform.localPosition += new Vector3 (cube.transform.localPosition.x * speedX * speed_multiplier, 0, speedZ * speed_multiplier);
+				if (cube.transform.localPosition.z < -7) {
+					Destroy (cube);
+				}
 			}
+
 		}
 
 	}
@@ -110,24 +114,17 @@ public class CityController : AudioBase {
 		foreach (Material mat in mats) {
 			mat.color = currentColor;
 		}
-//		int matIndex = Random.Range(0,100)%cityCube_mats.Length;
-//		matIndex = 0;
-//		cube.GetComponent<Renderer> ().material [0] = cityCube_mats [matIndex];
-//		cube.GetComponent<Renderer> ().material[1] = cityCube_mats [matIndex];
-//		cube.GetComponent<Renderer> ().material[0].color = currentColor;
-//		cube.GetComponent<Renderer> ().material[1].color = currentColor;
-
 	}
 	public void ChangeMultiplier_TiltX(float value){
+		DOTween.Kill ("multiplier_tiltX");
 		if (targetSpeed > 0.5f) {
-			DOTween.Kill ("multiplier_tiltX");
-			DOTween.To (() => multiplier_tiltX, x => multiplier_tiltX = x, value, 0.5f).SetEase (Ease.OutCubic);
-			DOTween.To (() => multiplier_tiltX, x => multiplier_tiltX = x, -5, 0.5f).SetEase (Ease.OutCubic).SetDelay (0.5f);
+			DOTween.To (() => multiplier_tiltX, x => multiplier_tiltX = x, value, 5f).SetEase (Ease.OutCubic);
 		}
+		DOTween.To (() => multiplier_tiltX, x => multiplier_tiltX = x, -5, 5f).SetEase (Ease.OutCubic).SetDelay (1.5f);
 	}
 	public void ChangeMultiplier_Tilty(float value){
 		if (!System.Single.IsNaN (value)) {
-			if (targetSpeed > 0.5f) {
+			if (targetSpeed > 1f) {
 				target_multiplier_tiltY = Mathf.Sign(Random.Range(-1,1))*value;
 			}
 //			Debug.Log ("BaseHandler=" + value);
@@ -147,5 +144,34 @@ public class CityController : AudioBase {
 	}
 	public void ChangeColor(int colorIndex){
 		targetColor = custumColorList[colorIndex];
+	}
+
+	public void CreateCity(){
+//		if (targetSpeed > 0.4f) {
+//			GameObject cube = Instantiate (cityCube [Random.Range (0, cityCube.Length)]) as GameObject;
+//			cube.transform.parent = cityContainer;
+//			cube.transform.localPosition = new Vector3 (Random.Range (-1.5f, 1.5f), -1.75f, 4.5f);
+//			cube.transform.localEulerAngles = new Vector3 (0, Random.Range (0, 360), 0);
+//			float size = Random.Range (0.5f, 1.5f);
+//			cube.transform.localScale = new Vector3 (size, Random.Range (1f, 8f), size);
+//			Material[] mats = cube.GetComponent<Renderer> ().materials;
+//			foreach (Material mat in mats) {
+//				mat.color = currentColor;
+//			}
+//			cityCubes.Add (cube);
+//		}
+	}
+	public void CreateCity2(){
+		GameObject cube = Instantiate (cityCube [Random.Range (0, cityCube.Length)]) as GameObject;
+		cube.transform.parent = cityContainer;
+		cube.transform.localPosition = new Vector3 (Mathf.Sign(Random.Range(-10,10))*Random.Range (0.5f, 1.5f), -1.75f, 4.5f);
+		cube.transform.localEulerAngles = new Vector3 (0, Random.Range (0, 360), 0);
+		float size = Random.Range (0.5f, 1.5f);
+		cube.transform.localScale = new Vector3 (size, Random.Range (1f, 8f), size);
+		Material[] mats = cube.GetComponent<Renderer> ().materials;
+		foreach (Material mat in mats) {
+			mat.color = currentColor;
+		}
+		cityCubes.Add (cube);
 	}
 }

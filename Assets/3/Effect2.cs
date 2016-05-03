@@ -80,7 +80,7 @@ public class Effect2 : AudioBase {
 	void Update ()
 	{
 		if (rotateConainer == true) {
-			cameraTargetAngle = cubeContainer.localEulerAngles + new Vector3(0,direction*0.5f,0);
+			cameraTargetAngle = cubeContainer.localEulerAngles + new Vector3(0,direction*1.5f,0);
 			cubeContainer.localEulerAngles = cameraTargetAngle;
 
 		}
