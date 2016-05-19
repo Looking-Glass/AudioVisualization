@@ -28,6 +28,8 @@ public class ControlTriangle : AudioBase {
 	float originalHeight = 1;
 
 	float easetime = 0.5f;
+	public Transform center;
+//	public Color[] colors;
 	void Start(){
 		volumeGO.Clear ();
 		volumeGO = volumeContainer.GetComponentsInChildren<Transform> ().ToList();
@@ -38,27 +40,31 @@ public class ControlTriangle : AudioBase {
 	}
 	void OnEnable(){
 
-		hypercubeContainer = Controller.instance.mainCamera;
-		hypercubeCamera = Controller.instance.mainCamera;
+//		hypercubeContainer = Controller.instance.mainCamera;
+//		hypercubeCamera = Controller.instance.mainCamera;
 	}
+	int angle = 0;
 	void Update(){
-		if (hypercubeContainer == null) {
-			return;
-		}
-		if (Input.GetKeyDown(KeyCode.U)) {
-			MoveCamera ();
-		}
-		if (hypercubeContainer.transform.parent != camera) {
-			hypercubeContainer.transform.parent = camera;
-			hypercubeContainer.localPosition = new Vector3 (0.02f, 0, 3.69f);
-			hypercubeCamera.localScale = defaultScale;
-			hypercubeContainer.localEulerAngles = Vector3.zero;
+//		if (hypercubeContainer == null) {
+//			return;
+//		}
+//		if (Input.GetKeyDown(KeyCode.U)) {
+//			MoveCamera ();
+//		}
+//		if (hypercubeContainer.transform.parent != camera) {
+//			hypercubeContainer.transform.parent = camera;
+//			hypercubeContainer.localPosition = new Vector3 (0.02f, 0, 3.69f);
+//			hypercubeCamera.localScale = defaultScale;
+//			hypercubeContainer.localEulerAngles = Vector3.zero;
 			cameraOriginalPos = camera.localPosition;
-		}
+//		}
 
-		hypercubeCamera.localEulerAngles = Vector3.zero;
-		camera.localEulerAngles += new Vector3(0,direction*0.5f,0);
-
+//		hypercubeCamera.localEulerAngles = Vector3.zero;
+		float radius = 0.5f;
+		angle+=3;
+		Controller.instance.mainCamera.localPosition = new Vector3 (cameraOriginalPos.x, cameraOriginalPos.y + radius * Mathf.Cos (angle * Mathf.Deg2Rad), cameraOriginalPos.z + radius * Mathf.Sin (angle * Mathf.Deg2Rad));
+//		Controller.instance.mainCamera.transform.LookAt(center);
+		Controller.instance.mainCamera.localEulerAngles = new Vector3(0,angle,0);
 		float[] musicData_Decibal;
 		float[] musicData_high;
 		float[] musicData_bass;
@@ -81,7 +87,7 @@ public class ControlTriangle : AudioBase {
 //			RotateCamera ();
 //		}
 		if (beat > 0.8f) {
-			RotateCamera ();
+//			RotateCamera ();
 		}
 
 //		if (float.IsNaN (volumeHighest)) {

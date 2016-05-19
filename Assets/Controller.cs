@@ -31,6 +31,8 @@ public class Controller : MonoBehaviour {
 	// Use this for initialization
 	public CustomEffect[] effects;
 	public int index = 0; 
+	public bool autoSwitchEffect = true;
+	public int autoSwitchTime = 1;
 	void Start () {
 //		mainCamera.transform.parent = hypercubeContainer;
 //		hypercubeContainer = mainCamera;
@@ -38,6 +40,7 @@ public class Controller : MonoBehaviour {
 //		mainCamera.localScale = Vector3.one;
 //		mainCamera.localEulerAngles = new Vector3(180,0,0);
 		Switch (index);
+
 	}
 
 
@@ -66,8 +69,15 @@ public class Controller : MonoBehaviour {
 			AudioSampler.instance.SetAudioSource (temp);
 		}
 	}
-
+	void AutioSwitch(){
+		index++;
+		if (index >effects.Length-1) {
+			index = 0;
+		}
+		Switch (index);
+	}
 	void Switch(int targetIndex){
+		
 		for (int i =0;i<effects.Length;i++) {
 			if (i != targetIndex) {
 				effects [i].effect.SetActive (false);
@@ -82,10 +92,12 @@ public class Controller : MonoBehaviour {
 				mainCamera.transform.position = effects [i].camera_Pos;
 				mainCamera.transform.localEulerAngles = effects [i].camera_Angle;
 				mainCamera.transform.localScale = effects [i].camera_Scale;
-				mainCamera.GetComponent<hypercubeCamera> ().filedofView = effects [i].fileofView;
+				mainCamera.GetComponent<hypercubeCamera> ().fieldofView = effects [i].fileofView;
 				mainCamera.GetComponent<hypercubeCamera> ().resetSettings ();
 			}
 		}
+		CancelInvoke ("AutioSwitch");
+		Invoke ("AutioSwitch",autoSwitchTime);
 	}
 
 

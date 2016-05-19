@@ -13,7 +13,7 @@ public class hypercubeCamera : MonoBehaviour {
     public hypercubePreview preview = null;
 
 	//update
-	public float filedofView = 1;
+	public float fieldofView = 1;
     //public hypercubeCanvas getLocalCanvas() { return localCanvas; }
 
 
@@ -85,7 +85,7 @@ public class hypercubeCamera : MonoBehaviour {
             cameras[i].nearClipPlane = i * sliceDepth - (sliceDepth * overlap);
             cameras[i].farClipPlane = (i + 1) * sliceDepth + (sliceDepth * overlap);
 //            cameras[i].orthographicSize = cameraSize;
-			cameras[i].orthographicSize = cameraSize + (filedofView - 1) /slices* i; //filedofView = 1
+			cameras[i].orthographicSize = cameraSize + (fieldofView - 1) /slices* i; //filedofView = 1
             cameras[i].aspect = aspectRatio;
         }
     }

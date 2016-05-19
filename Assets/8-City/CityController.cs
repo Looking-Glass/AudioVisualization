@@ -164,7 +164,7 @@ public class CityController : AudioBase {
 	public void CreateCity2(){
 		GameObject cube = Instantiate (cityCube [Random.Range (0, cityCube.Length)]) as GameObject;
 		cube.transform.parent = cityContainer;
-		cube.transform.localPosition = new Vector3 (Mathf.Sign(Random.Range(-10,10))*Random.Range (0.5f, 1.5f), -1.75f, 4.5f);
+		cube.transform.localPosition = new Vector3 (Mathf.Sign(Random.Range(-10,10))*Random.Range (0.5f, 1.5f), -1.75f, 6f);
 		cube.transform.localEulerAngles = new Vector3 (0, Random.Range (0, 360), 0);
 		float size = Random.Range (0.5f, 1.5f);
 		cube.transform.localScale = new Vector3 (size, Random.Range (1f, 8f), size);

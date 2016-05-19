@@ -116,7 +116,7 @@ public class BubbleEffect : AudioBase {
 //			colorNow += (normalColor - colorNow) / 10;
 //			bubbleScript.Init (new Vector3 (startPosX, startPosY, 0), musicData [0] * adjustSize,colorNow,endPosX);
 
-			yield return new WaitForSeconds (0.005f);
+			yield return new WaitForSeconds (0.001f);
 		}
 	}
 
