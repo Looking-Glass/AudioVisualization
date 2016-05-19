@@ -1,0 +1,6 @@
+sliceCount=10
+offsetX=0
+offsetY=0
+sliceWidth=1920
+pixelsPerSlice=120
+flipX=False

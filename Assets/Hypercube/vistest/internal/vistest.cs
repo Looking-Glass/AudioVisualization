@@ -84,6 +84,7 @@ public class vistest : MonoBehaviour {
         mustResetCameras = true;
 	}
 
+    //set the player to a particular monitor
     public void setDisplay()
     {
         if (targetDropdown.value == 0)

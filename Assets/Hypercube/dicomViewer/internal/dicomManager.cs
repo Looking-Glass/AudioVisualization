@@ -67,12 +67,11 @@ public class dicomManager : MonoBehaviour {
 
     public void load()
     {
-
-        if (defaultPath != "")
+        if (defaultPath != "")          
             load(defaultPath);
         updateSettings();
     }
-    public void load(string dirPath)
+    public virtual void load(string dirPath)
     {
         //clean up first.
         if (frames != null && frames.Length > 0)
@@ -86,27 +85,35 @@ public class dicomManager : MonoBehaviour {
 
         string[] subdirs = Directory.GetDirectories(dirPath);
 
-        if (subdirs.Length == 0) // nothing to load
-            return; 
-
-        frames = new dicomMeshLoader[subdirs.Length];
-
-        for(int d = 0; d <subdirs.Length; d++ )
+        if (subdirs.Length == 0) // no sub directores? try loading the given dir as a frame.
         {
-            GameObject g = new GameObject("frame_" + d);
-
-            //parent to ourselves and zero it out.
-            g.transform.parent = transform;
-            g.transform.localPosition = Vector3.zero;
-            g.transform.localRotation = Quaternion.identity;
-
-             frames[d] = g.AddComponent<dicomMeshLoader>();
-             frames[d].loadFrame( subdirs[d], baseMat);
-
-             g.SetActive(false);
+            frames = new dicomMeshLoader[1]; //1 frame only
+            makeFrame(0, dirPath, baseMat);
+            setFrame(0);
+            return;
         }
 
+        frames = new dicomMeshLoader[subdirs.Length];
+        for(int d = 0; d <subdirs.Length; d++ )
+        {
+            makeFrame(d, subdirs[d], baseMat);
+        }
         setFrame(0);
+    }
+
+    void makeFrame(int frameNum, string path, Material baseMat)
+    {
+        GameObject g = new GameObject("frame_" + frameNum);
+
+        //parent to ourselves and zero it out.
+        g.transform.parent = transform;
+        g.transform.localPosition = Vector3.zero;
+        g.transform.localRotation = Quaternion.identity;
+
+        frames[frameNum] = g.AddComponent<dicomMeshLoader>();
+        frames[frameNum].loadFrame(path, baseMat);
+
+        g.SetActive(false);
     }
 
     public void nextFrame()

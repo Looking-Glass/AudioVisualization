@@ -67,10 +67,10 @@ public class hypercubePreview : MonoBehaviour {
             normals[v + 2] = new Vector3(0, 0, 1);
             normals[v + 3] = new Vector3(0, 0, 1);
 
-            uvs[v + 0] = new Vector2(1, 0);
-            uvs[v + 1] = new Vector2(0, 0);
-            uvs[v + 2] = new Vector2(0, 1);
-            uvs[v + 3] = new Vector2(1, 1);
+            uvs[v + 0] = new Vector2(0, 1);
+            uvs[v + 1] = new Vector2(1, 1);
+            uvs[v + 2] = new Vector2(1, 0);
+            uvs[v + 3] = new Vector2(0, 0);
 
 
             int[] tris = new int[6];

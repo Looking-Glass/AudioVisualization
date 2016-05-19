@@ -1,4 +1,4 @@
-﻿Shader "Unlit/Hypercube Shader"
+﻿Shader "Hypercube/Unlit"
 {
 	Properties
 	{

@@ -10,10 +10,10 @@ using System.Collections.Generic;
 public class hypercubeCanvas : MonoBehaviour 
 {
 
-
+    public bool flipX = false;
     public float sliceOffsetX = 0;
     public float sliceOffsetY = 0;
-    public int sliceCount = 12;
+    int sliceCount = 12; //this is given by the attached hypercube
     public float sliceWidth = 600;
     public float sliceHeight = 53;
     public float zPos = .01f;
@@ -34,7 +34,7 @@ public class hypercubeCanvas : MonoBehaviour
         if (!sliceMesh)
             return;
 
-        updateMesh();
+        updateMesh(sliceCount);
         resetTransform();       
     }
 
@@ -45,6 +45,54 @@ public class hypercubeCanvas : MonoBehaviour
             resetTransform();
         }
     }
+
+    //prefs input
+    public void flip()
+    {
+        flipX = !flipX;
+        updateMesh(sliceCount);
+    }
+    public void sliceHeightUp()
+    {
+        sliceHeight += .2f;
+        updateMesh(sliceCount);
+    }
+    public void sliceHeightDown()
+    {
+        sliceHeight -= .2f;
+        updateMesh(sliceCount);
+    }
+    public void nudgeUp()
+    {
+        sliceOffsetY += .2f;
+        updateMesh(sliceCount);
+    }
+    public void nudgeDown()
+    {
+        sliceOffsetY -= .2f;
+        updateMesh(sliceCount);
+    }
+    public void nudgeLeft()
+    {
+        sliceOffsetX -= 1f;
+        updateMesh(sliceCount);
+    }
+    public void nudgeRight()
+    {
+        sliceOffsetX += 1f;
+        updateMesh(sliceCount);
+    }
+    public void widthUp()
+    {
+        sliceWidth += 1f;
+        updateMesh(sliceCount);
+    }
+    public void widthDown()
+    {
+        sliceWidth -= 1f;
+        updateMesh(sliceCount);
+    }
+
 
     void resetTransform() //size the mesh appropriately to the screen
     {
@@ -60,6 +108,7 @@ public class hypercubeCanvas : MonoBehaviour
 
     }
 
+    //this is part of the code that tries to map the player to a particular screen (this appears to be very flaky in Unity)
     public void setToDisplay(int displayNum)
     {
         if (displayNum == 0 || displayNum >= Display.displays.Length)
@@ -85,8 +134,9 @@ public class hypercubeCanvas : MonoBehaviour
     }
 
     
-    public void updateMesh()
+    public void updateMesh(int _sliceCount)
     {
+        sliceCount = _sliceCount;
         if (canvasMaterials.Count == 0)
         {
             Debug.LogError("Canvas materials have not been set!  Please define what materials you want to apply to each slice in the hypercubeCanvas component.");
@@ -138,10 +188,21 @@ public class hypercubeCanvas : MonoBehaviour
             normals[v + 2] = new Vector3(0, 0, 1);
             normals[v + 3] = new Vector3(0, 0, 1);
 
-            uvs[v + 0] = new Vector2(1, 0);
-            uvs[v + 1] = new Vector2(0, 0);
-            uvs[v + 2] = new Vector2(0, 1);
-            uvs[v + 3] = new Vector2(1, 1);
+            if (!flipX)
+            {
+                uvs[v + 0] = new Vector2(1, 0);
+                uvs[v + 1] = new Vector2(0, 0);
+                uvs[v + 2] = new Vector2(0, 1);
+                uvs[v + 3] = new Vector2(1, 1);
+            }
+            else
+            {
+                uvs[v + 0] = new Vector2(0, 0);
+                uvs[v + 1] = new Vector2(1, 0);
+                uvs[v + 2] = new Vector2(1, 1);
+                uvs[v + 3] = new Vector2(0, 1);
+            }
+
 
 
             int[] tris = new int[6];

@@ -11,11 +11,8 @@ public class hypercubeCamera : MonoBehaviour {
     public hypercubeCanvas canvasPrefab;
     public hypercubeCanvas localCanvas = null;
     public hypercubePreview preview = null;
-
-	//update
-	public float fieldofView = 1;
     //public hypercubeCanvas getLocalCanvas() { return localCanvas; }
-
+	public float fieldofView =1;
 
 
     void Start()
@@ -26,8 +23,24 @@ public class hypercubeCamera : MonoBehaviour {
             if (!localCanvas)
                 localCanvas = Instantiate(canvasPrefab);  //if no canvas exists. we need to have one or the hypercube is useless.
         }
-        localCanvas.sliceCount = slices;
-        localCanvas.updateMesh();
+
+        //use our save values only in the player only to avoid confusing behaviors in the editor
+        //LOAD OUR PREFS
+        if (!Application.isEditor)
+        {
+            dataFileAssoc d = GetComponent<dataFileAssoc>();
+            if (d)
+            {
+                slices = d.getValueAsInt("sliceCount", 10);
+                localCanvas.sliceOffsetX = d.getValueAsFloat("offsetX", 0);
+                localCanvas.sliceOffsetY = d.getValueAsFloat("offsetY", 0);
+                localCanvas.sliceWidth = d.getValueAsFloat("sliceWidth", 800f);
+                localCanvas.sliceHeight = d.getValueAsFloat("pixelsPerSlice", 68f);
+                localCanvas.flipX = d.getValueAsBool("flipX", false);
+            }
+        }
+
+        localCanvas.updateMesh(slices);
         resetSettings();
     }
 
@@ -52,8 +65,7 @@ public class hypercubeCamera : MonoBehaviour {
         if (localCanvas)
         {
             localCanvas.setTone(brightness);
-            localCanvas.sliceCount = slices;
-            localCanvas.updateMesh();
+            localCanvas.updateMesh(slices);
         }
         if (preview)
         {
@@ -85,8 +97,23 @@ public class hypercubeCamera : MonoBehaviour {
             cameras[i].nearClipPlane = i * sliceDepth - (sliceDepth * overlap);
             cameras[i].farClipPlane = (i + 1) * sliceDepth + (sliceDepth * overlap);
 //            cameras[i].orthographicSize = cameraSize;
-			cameras[i].orthographicSize = cameraSize + (fieldofView - 1) /slices* i; //filedofView = 1
+			cameras[i].orthographicSize = cameraSize + (fieldofView - 1) /slices* i; 
             cameras[i].aspect = aspectRatio;
         }
+    }
+
+    void OnApplicationQuit()
+    {
+        //save our settings whether in editor mode or play mode.
+        dataFileAssoc d = GetComponent<dataFileAssoc>();
+        if (!d)
+            return;
+        d.setValue("sliceCount", slices.ToString(), true);
+        d.setValue("offsetX", localCanvas.sliceOffsetX.ToString(), true);
+        d.setValue("offsetY", localCanvas.sliceOffsetY.ToString(), true);
+        d.setValue("sliceWidth", localCanvas.sliceWidth.ToString(), true);
+        d.setValue("pixelsPerSlice", localCanvas.sliceHeight.ToString(), true);
+        d.setValue("flipX", localCanvas.flipX.ToString(), true);
+        d.save();
     }
 }

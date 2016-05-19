@@ -44,7 +44,7 @@ public class dicomMeshLoader: MonoBehaviour {
 
 
 
-    public bool loadFrame(string dirPath, Material m) //load a 3D frame, not to be confused with a slice
+    public virtual bool loadFrame(string dirPath, Material m) //load a 3D frame, not to be confused with a slice
     {
         // find out how may slices it has
         var info = new DirectoryInfo(dirPath);
@@ -90,9 +90,10 @@ public class dicomMeshLoader: MonoBehaviour {
         transform.localScale = new Vector3( (float)tempTex.width/(float)tempTex.height, 1f, 1f); //scale the mesh.  TODO - Z here SHOULD BE INFLUENCED BY THE DISTANCE BETWEEN SLICES!
 
 
-        //Color[] colors = null;
-        //colors = new Color[w * h * d];
-        List<Color> colors = new List<Color>();
+        Color[] colors = null;
+        Debug.Log("Creating 3D texture with W:" + w+ " H:" + h + " D:" +d);
+        colors = new Color[w * h * d];
+        //List<Color> colors = new List<Color>();
 
         //load all the slices into the 3D texture        
         for(int z = 0; z < d;  z++)
@@ -101,34 +102,40 @@ public class dicomMeshLoader: MonoBehaviour {
             if (z != 0 && z < imageSlices) //don't reload the first texture (and just reuse the last texture to make the data meet power of 2 depth)
             {
                 pngBytes = File.ReadAllBytes(slices[z].FullName);
+             //   DestroyImmediate(tempTex);
+                tempTex = new Texture2D(w, h);
                 if (!tempTex.LoadImage(pngBytes))        // Load data into the texture.
                     return false;
             }
 
 
-            if (tempTex.width == w && tempTex.height == h)
-                colors.AddRange(tempTex.GetPixels()); //this is an optimization to avoid setting every pixel manually for the texture
-            else
+      //      if (tempTex.width == w && tempTex.height == h)
+       //         colors.AddRange(tempTex.GetPixels()); //this is an optimization to avoid setting every pixel manually for the texture
+      //      else
             {
                 for (int y = 0; y < h; y++)
                 {
                     for (int x = 0; x < w; x++)
                     {
-                       // int index = x + (y * w) + (z * w * h);
+                        int index = x + (y * w) + (z * w * h);
                         if (y >= tempTex.height || x >= tempTex.width || z >= imageSlices) //fill any extra pixels with black.
-                            colors.Add(Color.black);
-                         else
-                             colors.Add(tempTex.GetPixel(x, y));  
+                            colors[index] = new Color(0f, 0f, 0f);
+                        else
+                            colors[index] = tempTex.GetPixel(x, y);  
+                        //if (y >= tempTex.height || x >= tempTex.width || z >= imageSlices) //fill any extra pixels with black.
+                        //    colors.Add(Color.black);
+                        // else
+                        //     colors.Add(tempTex.GetPixel(x, y));  
                     }
                 }
             }
-
-            tempTex.Resize(2, 2);  //get our memory back.
+         
+       //     tempTex.Resize(2, 2);  //get our memory back.
         }
 
 
         tex = new Texture3D(w, h, d, tempTex.format, false);
-        tex.SetPixels(colors.ToArray());
+        tex.SetPixels(colors);
         tex.Apply(); //send to gpu
         tex.wrapMode = TextureWrapMode.Clamp;
 

@@ -1812,10 +1812,10 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 260127945}
---- !u!1 &290339000 stripped
+--- !u!1 &283723422 stripped
 GameObject:
-  m_PrefabParentObject: {fileID: 173144, guid: bd91087d62c2e1f458c1c7282fa60794, type: 2}
-  m_PrefabInternal: {fileID: 569742042}
+  m_PrefabParentObject: {fileID: 106244, guid: e99d4de58c1120c4287b87124df5c70c, type: 2}
+  m_PrefabInternal: {fileID: 1997651885}
 --- !u!1 &329335346
 GameObject:
   m_ObjectHideFlags: 0
@@ -3246,7 +3246,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: JUMP00B
+  m_Text: girlIdleHop
 --- !u!222 &515620307
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3541,52 +3541,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 558968872}
---- !u!1001 &569742042
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 423210, guid: bd91087d62c2e1f458c1c7282fa60794, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -9.364904
-      objectReference: {fileID: 0}
-    - target: {fileID: 423210, guid: bd91087d62c2e1f458c1c7282fa60794, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -3.233616
-      objectReference: {fileID: 0}
-    - target: {fileID: 423210, guid: bd91087d62c2e1f458c1c7282fa60794, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 2.5247893
-      objectReference: {fileID: 0}
-    - target: {fileID: 423210, guid: bd91087d62c2e1f458c1c7282fa60794, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 423210, guid: bd91087d62c2e1f458c1c7282fa60794, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 423210, guid: bd91087d62c2e1f458c1c7282fa60794, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 423210, guid: bd91087d62c2e1f458c1c7282fa60794, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 423210, guid: bd91087d62c2e1f458c1c7282fa60794, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 169722, guid: bd91087d62c2e1f458c1c7282fa60794, type: 2}
-      propertyPath: m_TagString
-      value: VISTEST
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: bd91087d62c2e1f458c1c7282fa60794, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &605981190
 GameObject:
   m_ObjectHideFlags: 0
@@ -5241,6 +5195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   overlap: 0
   brightness: 1
+  slices: 12
   cameras:
   - {fileID: 92763717}
   - {fileID: 1577396352}
@@ -5255,6 +5210,8 @@ MonoBehaviour:
   - {fileID: 1215331494}
   - {fileID: 2094406906}
   canvasPrefab: {fileID: 0}
+  localCanvas: {fileID: 145101738}
+  preview: {fileID: 0}
 --- !u!4 &795436276
 Transform:
   m_ObjectHideFlags: 0
@@ -6668,13 +6625,13 @@ MonoBehaviour:
     - {fileID: 1617979079}
     - {fileID: 1963080617}
   - show:
-    - {fileID: 290339000}
+    - {fileID: 283723422}
     - {fileID: 1338184692}
     - {fileID: 2018681622}
     - {fileID: 1963080617}
     - {fileID: 1094302854}
   - show:
-    - {fileID: 290339000}
+    - {fileID: 283723422}
     - {fileID: 1020480794}
     - {fileID: 2018681622}
     - {fileID: 1963080617}
@@ -10970,9 +10927,49 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: JUMP00B
+    - m_Text: girlIdleHop
       m_Image: {fileID: 0}
-    - m_Text: RUN00_L
+    - m_Text: girlIdleLook
+      m_Image: {fileID: 0}
+    - m_Text: girlIdleStay
+      m_Image: {fileID: 0}
+    - m_Text: girlIdleSway
+      m_Image: {fileID: 0}
+    - m_Text: girlRun
+      m_Image: {fileID: 0}
+    - m_Text: heyThereYouAre
+      m_Image: {fileID: 0}
+    - m_Text: I have to go
+      m_Image: {fileID: 0}
+    - m_Text: pose1
+      m_Image: {fileID: 0}
+    - m_Text: pose1 bored1
+      m_Image: {fileID: 0}
+    - m_Text: pose1 bored2
+      m_Image: {fileID: 0}
+    - m_Text: pose1 bored2 idle
+      m_Image: {fileID: 0}
+    - m_Text: pose1 idle
+      m_Image: {fileID: 0}
+    - m_Text: pose2
+      m_Image: {fileID: 0}
+    - m_Text: pose2 bored1
+      m_Image: {fileID: 0}
+    - m_Text: pose2 bored2
+      m_Image: {fileID: 0}
+    - m_Text: pose2 idle
+      m_Image: {fileID: 0}
+    - m_Text: pose3
+      m_Image: {fileID: 0}
+    - m_Text: pose3 bored1
+      m_Image: {fileID: 0}
+    - m_Text: pose3 bored2
+      m_Image: {fileID: 0}
+    - m_Text: pose3 bored2 idle
+      m_Image: {fileID: 0}
+    - m_Text: pose3 idle
+      m_Image: {fileID: 0}
+    - m_Text: posed2 bored2 idle
       m_Image: {fileID: 0}
     - m_Text: attack1
       m_Image: {fileID: 0}
@@ -11009,8 +11006,6 @@ MonoBehaviour:
     - m_Text: walk
       m_Image: {fileID: 0}
     - m_Text: zombieRun
-      m_Image: {fileID: 0}
-    - m_Text: WAIT00
       m_Image: {fileID: 0}
     - m_Text: Death
       m_Image: {fileID: 0}
@@ -11020,12 +11015,6 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: None
       m_Image: {fileID: 0}
-    - m_Text: HANDUP00_R
-      m_Image: {fileID: 0}
-    - m_Text: SURPRISE
-      m_Image: {fileID: 0}
-    - m_Text: angry1@unitychan
-      m_Image: {fileID: 0}
     - m_Text: attack1
       m_Image: {fileID: 0}
     - m_Text: attack2
@@ -11062,21 +11051,9 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: zombieRun
       m_Image: {fileID: 0}
-    - m_Text: disstract2@unitychan
-      m_Image: {fileID: 0}
-    - m_Text: WALK00_B
-      m_Image: {fileID: 0}
     - m_Text: girlWalkAnim
       m_Image: {fileID: 0}
-    - m_Text: DAMAGED01
-      m_Image: {fileID: 0}
-    - m_Text: WAIT04
-      m_Image: {fileID: 0}
-    - m_Text: RUN00_F
-      m_Image: {fileID: 0}
     - m_Text: rotate
-      m_Image: {fileID: 0}
-    - m_Text: REFLESH00
       m_Image: {fileID: 0}
     - m_Text: attack1
       m_Image: {fileID: 0}
@@ -11116,71 +11093,13 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: GameOverClip
       m_Image: {fileID: 0}
-    - m_Text: WAIT01
+    - m_Text: idle
       m_Image: {fileID: 0}
-    - m_Text: WALK00_R
+    - m_Text: jump_pose
       m_Image: {fileID: 0}
-    - m_Text: sap@unitychan
+    - m_Text: run
       m_Image: {fileID: 0}
-    - m_Text: WIN00
-      m_Image: {fileID: 0}
-    - m_Text: WAIT03
-      m_Image: {fileID: 0}
-    - m_Text: JUMP00
-      m_Image: {fileID: 0}
-    - m_Text: conf@unitychan
-      m_Image: {fileID: 0}
-    - m_Text: disstract1@unitychan
-      m_Image: {fileID: 0}
-    - m_Text: smile2@unitychan
-      m_Image: {fileID: 0}
-    - m_Text: LOSE00
-      m_Image: {fileID: 0}
-    - m_Text: eye_close@unitychan
-      m_Image: {fileID: 0}
-    - m_Text: POSE13
-      m_Image: {fileID: 0}
-    - m_Text: POSE14
-      m_Image: {fileID: 0}
-    - m_Text: POSE15
-      m_Image: {fileID: 0}
-    - m_Text: POSE16
-      m_Image: {fileID: 0}
-    - m_Text: POSE17
-      m_Image: {fileID: 0}
-    - m_Text: POSE18
-      m_Image: {fileID: 0}
-    - m_Text: POSE19
-      m_Image: {fileID: 0}
-    - m_Text: POSE20
-      m_Image: {fileID: 0}
-    - m_Text: POSE21
-      m_Image: {fileID: 0}
-    - m_Text: POSE22
-      m_Image: {fileID: 0}
-    - m_Text: POSE23
-      m_Image: {fileID: 0}
-    - m_Text: POSE24
-      m_Image: {fileID: 0}
-    - m_Text: POSE25
-      m_Image: {fileID: 0}
-    - m_Text: POSE26
-      m_Image: {fileID: 0}
-    - m_Text: POSE27
-      m_Image: {fileID: 0}
-    - m_Text: POSE28
-      m_Image: {fileID: 0}
-    - m_Text: POSE29
-      m_Image: {fileID: 0}
-    - m_Text: POSE30
-      m_Image: {fileID: 0}
-    - m_Text: POSE31
-      m_Image: {fileID: 0}
-    - m_Text: smile1@unitychan
-      m_Image: {fileID: 0}
-    - m_Text: UMATOBI00
-      m_Image: {fileID: 0}
-    - m_Text: WALK00_F
+    - m_Text: walk
       m_Image: {fileID: 0}
     - m_Text: attack1
       m_Image: {fileID: 0}
@@ -11218,14 +11137,6 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: zombieRun
       m_Image: {fileID: 0}
-    - m_Text: JUMP01
-      m_Image: {fileID: 0}
-    - m_Text: DAMAGED00
-      m_Image: {fileID: 0}
-    - m_Text: WALK00_L
-      m_Image: {fileID: 0}
-    - m_Text: angry2@unitychan
-      m_Image: {fileID: 0}
     - m_Text: attack1
       m_Image: {fileID: 0}
     - m_Text: attack2
@@ -11261,8 +11172,6 @@ MonoBehaviour:
     - m_Text: walk
       m_Image: {fileID: 0}
     - m_Text: zombieRun
-      m_Image: {fileID: 0}
-    - m_Text: default@unitychan
       m_Image: {fileID: 0}
     - m_Text: fly
       m_Image: {fileID: 0}
@@ -11270,30 +11179,6 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: idle
       m_Image: {fileID: 0}
-    - m_Text: POSE01
-      m_Image: {fileID: 0}
-    - m_Text: POSE02
-      m_Image: {fileID: 0}
-    - m_Text: POSE03
-      m_Image: {fileID: 0}
-    - m_Text: POSE04
-      m_Image: {fileID: 0}
-    - m_Text: POSE05
-      m_Image: {fileID: 0}
-    - m_Text: POSE06
-      m_Image: {fileID: 0}
-    - m_Text: POSE07
-      m_Image: {fileID: 0}
-    - m_Text: POSE08
-      m_Image: {fileID: 0}
-    - m_Text: POSE09
-      m_Image: {fileID: 0}
-    - m_Text: POSE10
-      m_Image: {fileID: 0}
-    - m_Text: POSE11
-      m_Image: {fileID: 0}
-    - m_Text: POSE12
-      m_Image: {fileID: 0}
     - m_Text: attack1
       m_Image: {fileID: 0}
     - m_Text: attack2
@@ -11336,21 +11221,11 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Move
       m_Image: {fileID: 0}
-    - m_Text: RUN00_R
-      m_Image: {fileID: 0}
-    - m_Text: SLIDE00
-      m_Image: {fileID: 0}
-    - m_Text: WAIT02
-      m_Image: {fileID: 0}
     - m_Text: Death
       m_Image: {fileID: 0}
     - m_Text: Idle
       m_Image: {fileID: 0}
     - m_Text: Move
-      m_Image: {fileID: 0}
-    - m_Text: ASHAMED
-      m_Image: {fileID: 0}
-    - m_Text: JUMP01B
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -12287,6 +12162,60 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1984844241}
+--- !u!1001 &1997651885
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 409434, guid: e99d4de58c1120c4287b87124df5c70c, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 409434, guid: e99d4de58c1120c4287b87124df5c70c, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 409434, guid: e99d4de58c1120c4287b87124df5c70c, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 409434, guid: e99d4de58c1120c4287b87124df5c70c, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 409434, guid: e99d4de58c1120c4287b87124df5c70c, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 409434, guid: e99d4de58c1120c4287b87124df5c70c, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 409434, guid: e99d4de58c1120c4287b87124df5c70c, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 409434, guid: e99d4de58c1120c4287b87124df5c70c, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 106244, guid: e99d4de58c1120c4287b87124df5c70c, type: 2}
+      propertyPath: m_TagString
+      value: VISTEST
+      objectReference: {fileID: 0}
+    - target: {fileID: 156962, guid: e99d4de58c1120c4287b87124df5c70c, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 106244, guid: e99d4de58c1120c4287b87124df5c70c, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: e99d4de58c1120c4287b87124df5c70c, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &2018681622
 GameObject:
   m_ObjectHideFlags: 0
@@ -12312,8 +12241,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2018681622}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.364914, y: -3.2337646, z: 0.35943604}
+  m_LocalRotation: {x: 0, y: 0.22895509, z: 0, w: 0.973437}
+  m_LocalPosition: {x: 3.94, y: 0, z: -1.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -12324,21 +12253,21 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2018681622}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!92 &2018681625
 Behaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2018681622}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!124 &2018681626
 Behaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2018681622}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &2018681627
 Camera:
   m_ObjectHideFlags: 0
@@ -12418,11 +12347,11 @@ Prefab:
       objectReference: {fileID: 2143972879}
     - target: {fileID: 465140, guid: 8cfe63b4fed84fb40bf9a845cee02caa, type: 2}
       propertyPath: m_LocalScale.x
-      value: 1.0810812
+      value: 1.6666667
       objectReference: {fileID: 0}
     - target: {fileID: 465140, guid: 8cfe63b4fed84fb40bf9a845cee02caa, type: 2}
       propertyPath: m_LocalScale.y
-      value: 1.7189189
+      value: 2.65
       objectReference: {fileID: 0}
     - target: {fileID: 465140, guid: 8cfe63b4fed84fb40bf9a845cee02caa, type: 2}
       propertyPath: m_LocalPosition.y
