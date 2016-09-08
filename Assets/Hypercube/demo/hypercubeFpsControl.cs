@@ -21,12 +21,20 @@ public class hypercubeFpsControl : MonoBehaviour {
     float rotationZ = 0f;
     Quaternion originalRotation;
 
+    Quaternion originRotation; //these are not used for navigation, and only for resetting the values
+    Vector3 originPosition; 
+    Vector3 originScale;
+
     float scaleMod = 1f;
     Vector3 baseScale = new Vector3(1f, 1f, 1f);
 
     public Transform moveNode;
 
+    public KeyCode pauseKey;
     public bool paused = false;
+
+   // Vector3 originalPosition;
+  //  Vector3 originalScale;
 
     public void pauseInput()
     {
@@ -43,11 +51,18 @@ public class hypercubeFpsControl : MonoBehaviour {
             moveNode = transform;
 
         reset();
+
+        originRotation = moveNode.rotation;
+        originPosition = moveNode.position;
+        originScale = moveNode.localScale;
     }
 
     void Update()
     {
         if (paused)
+            return;
+
+        if (pauseKey != KeyCode.None && Input.GetKey(pauseKey))
             return;
 
         //mouse look
@@ -146,6 +161,14 @@ public class hypercubeFpsControl : MonoBehaviour {
         rotationX = 0f;
         rotationY = 0f;
         rotationZ = 0f;
+    }
+
+    public void resetToOriginalLocation()
+    {
+        moveNode.rotation = originRotation;
+        moveNode.position = originPosition;
+        moveNode.localScale = originScale;
+        reset();
     }
 
     public static float ClampAngle(float angle, float min, float max)

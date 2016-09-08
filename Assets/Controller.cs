@@ -92,7 +92,7 @@ public class Controller : MonoBehaviour {
 				mainCamera.transform.position = effects [i].camera_Pos;
 				mainCamera.transform.localEulerAngles = effects [i].camera_Angle;
 				mainCamera.transform.localScale = effects [i].camera_Scale;
-				mainCamera.GetComponent<hypercubeCamera> ().fieldofView = effects [i].fileofView;
+				mainCamera.GetComponent<hypercubeCamera> ().forcedPerspective = effects [i].fileofView;
 				mainCamera.GetComponent<hypercubeCamera> ().resetSettings ();
 			}
 		}
