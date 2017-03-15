@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -19,7 +19,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_3_4;UNITY_5_3;UNITY_5;ENABLE_NEW_BUGREPORTER;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_SPRITE_POLYGON;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_LOCALIZATION;ENABLE_ANDROID_ATLAS_ETC1_COMPRESSION;ENABLE_EDITOR_TESTS_RUNNER;UNITY_STANDALONE_OSX;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_GAMECENTER;ENABLE_TEXTUREID_MAP;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_LOG_MIXED_STACKTRACE;ENABLE_UNITYWEBREQUEST;ENABLE_CLUSTERINPUT;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE;CROSS_PLATFORM_INPUT</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_5_1;UNITY_5_5;UNITY_5;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_SCRIPTING_NEW_CSHARP_COMPILER;UNITY_STANDALONE_OSX;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_GAMECENTER;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_VIDEO;ENABLE_VR;ENABLE_CLUSTERINPUT;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;HYPERCUBE_INPUT;CROSS_PLATFORM_INPUT</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -36,18 +36,20 @@
     <Reference Include="System" />
     <Reference Include="System.XML" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Hypercube\internal\Editor\calibrationMenuOption.cs" />
+     <Compile Include="Assets\Hypercube\internal\Editor\S_HypercubeStandardShaderGUI.cs" />
      <Compile Include="Assets\Hypercube\internal\Editor\casterWindow.cs" />
      <Compile Include="Assets\Hypercube\internal\Editor\casterWindowPrefs.cs" />
+     <Compile Include="Assets\Hypercube\internal\Editor\menuOptions.cs" />
      <Compile Include="Assets\References\AudioVisualizer\Editor\CrossPlatformInputInitialize.cs" />
      <Compile Include="Assets\References\AudioVisualizer\Editor\CurveWaveformEditor.cs" />
      <Compile Include="Assets\References\AudioVisualizer\Editor\LineWaveformEditor.cs" />
@@ -57,6 +59,7 @@
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\One Directional Light\Transparent 2Sided Diffuse.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
+     <None Include="Assets\Hypercube\internal\materials\S_HypercubeStandard.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\One Directional Light\Transparent 2Sided Specular.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />
      <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonBasic.shader" />
@@ -67,13 +70,15 @@
      <None Include="Assets\8-City\RotateUV.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\PBR\Transparent 2Sided Diffuse Improved.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ShowAlphaChannel.shader" />
-     <None Include="Assets\Hypercube\internal\materials\S_HypecrubeLit.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\One Directional Light\Cutout 2Sided Bumped Specular.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\SunShaftsComposite.shader" />
+     <None Include="Assets\Hypercube\internal\materials\S_HypercubeAdditive.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\One Directional Light\Transparent Simple Specular.shader" />
+     <None Include="Assets\Hypercube\internal\materials\S_HypercubeGUI.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionCurves.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ScreenSpaceAmbientObscurance.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\Unlit\Transparent 2Sided Wire.shader" />
+     <None Include="Assets\Hypercube\internal\materials\softOverlapOccluding.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\PBR\Cutout Simple Diffuse.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\NFAA.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ScreenSpaceRaytrace.cginc" />
@@ -88,23 +93,24 @@
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\PBR\Cutout 2Sided Diffuse.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\MotionBlur.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\MobileBloom.shader" />
-     <None Include="Assets\Hypercube\internal\materials\S_HypercubeStandardSpec.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\PBR\Transparent Simple Diffuse.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\One Directional Light\Cutout Simple Bumped Specular.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\Unlit\Multiply Simple Wire.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\One Directional Light\Transparent ZWrite Specular.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\One Directional Light\Transparent 2Sided Bumped Improved.shader" />
+     <None Include="Assets\Hypercube\internal\materials\S_castMesh.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\cginc\Wireframe_PBR.cginc" />
-     <None Include="Assets\Hypercube\internal\materials\S_HypercubeStandard.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\MinMaxReduction.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\SSAA.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\RadialBlur.shader" />
+     <None Include="Assets\Hypercube\internal\materials\S_HypercubeStandardCore.cginc" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\Unlit\Multiply ZWrite Wire.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\DepthOfFieldDX11.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\One Directional Light\Cutout Simple Specular.shader" />
      <None Include="Assets\DOTween\DOTween43.xml" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ContrastComposite.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAAPreset3.shader" />
+     <None Include="Assets\Hypercube\internal\sliceMod\s_adding.shader" />
      <None Include="Assets\References\AudioVisualizer\Materials\BlendTexture.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\FisheyeShader.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\PBR\Cutout 2Sided Bumped.shader" />
@@ -130,6 +136,7 @@
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\PBR\Transparent 2Sided Bumped.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\One Directional Light\Transparent Simple Bumped Improved.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\PBR\Transparent 2Sided Bumped Improved.shader" />
+     <None Include="Assets\Hypercube\internal\sliceMod\s_under.shader" />
      <None Include="Assets\DoubleSides.shader" />
      <None Include="Assets\DOTween\DOTween50.xml" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\One Directional Light\Cutout 2Sided Diffuse.shader" />
@@ -158,7 +165,6 @@
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\Unlit\Addative ZWrite Wire.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\One Directional Light\Transparent 2Sided Bumped Specular.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\cginc\Wireframe_ForwardBase.cginc" />
-     <None Include="Assets\Hypercube\internal\materials\S_HypercubeUnlitCutout.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\CreaseApply.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\One Directional Light\Transparent ZWrite Bumped Improved.shader" />
      <None Include="Assets\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
@@ -167,6 +173,7 @@
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\Unlit\Transparent 2Sided Full Improved.shader" />
      <None Include="Assets\References\Realtime Reflections\Shaders\PlanarReflection.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\Projector\Projector.shader" />
+     <None Include="Assets\Hypercube\internal\sliceMod\s_over.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\GlobalFog.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\Unlit\Addative Simple Wire.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\One Directional Light\Specular.shader" />
@@ -180,6 +187,7 @@
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\Resources\Transparent Simple Wire.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\Bokeh34.shader" />
      <None Include="Assets\References\AudioVisualizer\Materials\BlendTextureLit.shader" />
+     <None Include="Assets\Hypercube\internal\materials\S_HypercubeStandardInput.cginc" />
      <None Include="Assets\VerticalGradientRange\shaders\gradientBarSurface.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\One Directional Light\Cutout Simple Diffuse.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\CameraMotionBlurDX11.shader" />
@@ -228,11 +236,13 @@
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\PBR\Cutout 2Sided Wire.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\One Directional Light\Transparent Wire 2Sided.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\PBR\Cutout Simple Bumped.shader" />
+     <None Include="Assets\Hypercube\internal\materials\S_HypercubeUnlitCutout.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrection3DLut.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\LensFlareCreate.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\Unlit\Transparent ZWrite Wire.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\One Directional Light\Transparent ZWrite Diffuse.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\EdgeDetectNormals.shader" />
+     <None Include="Assets\Hypercube\internal\sliceMod\s_multiplying.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\PrepareSunShaftsBlur.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\Unlit\Addative ZWrite Full.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\One Directional Light\Transparent 2Sided Specular Improved.shader" />
@@ -256,11 +266,10 @@
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlurAndFlares.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\One Directional Light\Transparent ZWrite Bumped.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\One Directional Light\Transparent Wire Simple.shader" />
-     <None Include="Assets\Hypercube\internal\materials\depthTester.shader" />
      <None Include="Assets\VacuumShaders\The Amazing Wireframe Shader\Shaders\One Directional Light\Cutout Wire Simple.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendForBloom.shader" />
  <Reference Include="Assembly-UnityScript">
- <HintPath>/Users/fyy/Documents/LookingGlassFactory/Unity/AudioVisualization/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
+ <HintPath>/Users/alexduncan/Documents/Work Stuff/LookingGlass/AudioVisualizationRepo/AudioVisualization/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
@@ -283,62 +292,65 @@
  <Reference Include="UnityEditor.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/Editor/UnityEditor.Networking.dll</HintPath>
  </Reference>
+ <Reference Include="UnityEditor.PlaymodeTestsRunner">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/PlaymodeTestsRunner/Editor/UnityEditor.PlaymodeTestsRunner.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.PlaymodeTestsRunner">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/PlaymodeTestsRunner/UnityEngine.PlaymodeTestsRunner.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEditor.TreeEditor">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll</HintPath>
  </Reference>
+ <Reference Include="UnityEngine.Analytics">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.Analytics">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/Editor/UnityEditor.Analytics.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.HoloLens">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityHoloLens/Editor/UnityEditor.HoloLens.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.HoloLens">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.VR">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.VR">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
+ </Reference>
  <Reference Include="DOTween">
- <HintPath>/Users/fyy/Documents/LookingGlassFactory/Unity/AudioVisualization/Assets/DOTween/DOTween.dll</HintPath>
+ <HintPath>/Users/alexduncan/Documents/Work Stuff/LookingGlass/AudioVisualizationRepo/AudioVisualization/Assets/DOTween/DOTween.dll</HintPath>
  </Reference>
  <Reference Include="DOTween43">
- <HintPath>/Users/fyy/Documents/LookingGlassFactory/Unity/AudioVisualization/Assets/DOTween/DOTween43.dll</HintPath>
+ <HintPath>/Users/alexduncan/Documents/Work Stuff/LookingGlass/AudioVisualizationRepo/AudioVisualization/Assets/DOTween/DOTween43.dll</HintPath>
  </Reference>
  <Reference Include="DOTween46">
- <HintPath>/Users/fyy/Documents/LookingGlassFactory/Unity/AudioVisualization/Assets/DOTween/DOTween46.dll</HintPath>
+ <HintPath>/Users/alexduncan/Documents/Work Stuff/LookingGlass/AudioVisualizationRepo/AudioVisualization/Assets/DOTween/DOTween46.dll</HintPath>
  </Reference>
  <Reference Include="DOTween50">
- <HintPath>/Users/fyy/Documents/LookingGlassFactory/Unity/AudioVisualization/Assets/DOTween/DOTween50.dll</HintPath>
+ <HintPath>/Users/alexduncan/Documents/Work Stuff/LookingGlass/AudioVisualizationRepo/AudioVisualization/Assets/DOTween/DOTween50.dll</HintPath>
  </Reference>
  <Reference Include="DOTweenEditor">
- <HintPath>/Users/fyy/Documents/LookingGlassFactory/Unity/AudioVisualization/Assets/DOTween/Editor/DOTweenEditor.dll</HintPath>
+ <HintPath>/Users/alexduncan/Documents/Work Stuff/LookingGlass/AudioVisualizationRepo/AudioVisualization/Assets/DOTween/Editor/DOTweenEditor.dll</HintPath>
  </Reference>
  <Reference Include="VacuumShaders">
- <HintPath>/Users/fyy/Documents/LookingGlassFactory/Unity/AudioVisualization/Assets/VacuumShaders/Editor/VacuumShaders.dll</HintPath>
+ <HintPath>/Users/alexduncan/Documents/Work Stuff/LookingGlass/AudioVisualizationRepo/AudioVisualization/Assets/VacuumShaders/Editor/VacuumShaders.dll</HintPath>
  </Reference>
  <Reference Include="VacuumShaders.TheAmazingWireframeShader_Editor">
- <HintPath>/Users/fyy/Documents/LookingGlassFactory/Unity/AudioVisualization/Assets/VacuumShaders/The Amazing Wireframe Shader/Editor/VacuumShaders.TheAmazingWireframeShader_Editor.dll</HintPath>
+ <HintPath>/Users/alexduncan/Documents/Work Stuff/LookingGlass/AudioVisualizationRepo/AudioVisualization/Assets/VacuumShaders/The Amazing Wireframe Shader/Editor/VacuumShaders.TheAmazingWireframeShader_Editor.dll</HintPath>
  </Reference>
  <Reference Include="VacuumShaders.TheAmazingWireframeShaderVC">
- <HintPath>/Users/fyy/Documents/LookingGlassFactory/Unity/AudioVisualization/Assets/VacuumShaders/The Amazing Wireframe Shader/Editor/VacuumShaders.TheAmazingWireframeShaderVC.dll</HintPath>
+ <HintPath>/Users/alexduncan/Documents/Work Stuff/LookingGlass/AudioVisualizationRepo/AudioVisualization/Assets/VacuumShaders/The Amazing Wireframe Shader/Editor/VacuumShaders.TheAmazingWireframeShaderVC.dll</HintPath>
  </Reference>
  <Reference Include="VacuumShaders.TheAmazingWireframeShader">
- <HintPath>/Users/fyy/Documents/LookingGlassFactory/Unity/AudioVisualization/Assets/VacuumShaders/The Amazing Wireframe Shader/Scripts/VacuumShaders.TheAmazingWireframeShader.dll</HintPath>
+ <HintPath>/Users/alexduncan/Documents/Work Stuff/LookingGlass/AudioVisualizationRepo/AudioVisualization/Assets/VacuumShaders/The Amazing Wireframe Shader/Scripts/VacuumShaders.TheAmazingWireframeShader.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
- <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.Graphs.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.Android.Extensions">
- <HintPath>/Applications/Unity/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.iOS.Extensions">
- <HintPath>/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.AppleTV.Extensions">
- <HintPath>/Applications/Unity/PlaybackEngines/AppleTVSupport/UnityEditor.AppleTV.Extensions.dll</HintPath>
+ <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEditor.Graphs.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.OSXStandalone.Extensions">
- <HintPath>/Applications/Unity/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.iOS.Extensions.Xcode">
- <HintPath>/Applications/Unity/PlaybackEngines/AppleTVSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.iOS.Extensions.Common">
- <HintPath>/Applications/Unity/PlaybackEngines/AppleTVSupport/UnityEditor.iOS.Extensions.Common.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.iOS.Extensions.Xcode">
- <HintPath>/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.iOS.Extensions.Common">
- <HintPath>/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll</HintPath>
+ <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/macstandalonesupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

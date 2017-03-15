@@ -1,3 +1,6 @@
+// Upgrade NOTE: replaced '_Projector' with 'unity_Projector'
+// Upgrade NOTE: replaced '_ProjectorClip' with 'unity_ProjectorClip'
+
 Shader "VacuumShaders/The Amazing Wireframe/Projector"
 {
 	Properties 
@@ -44,8 +47,8 @@ Shader "VacuumShaders/The Amazing Wireframe/Projector"
 
 			sampler2D _ShadowTex;
 			sampler2D _FalloffTex;
-			float4x4 _Projector;
-			float4x4 _ProjectorClip;
+			float4x4 unity_Projector;
+			float4x4 unity_ProjectorClip;
 						
 			
 			#include "../cginc/Wireframe_Core.cginc"
@@ -79,8 +82,8 @@ Shader "VacuumShaders/The Amazing Wireframe/Projector"
 
 				
 				o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
-				o.uvShadow = mul (_Projector, v.vertex);
-				o.uvFalloff = mul (_ProjectorClip, v.vertex);
+				o.uvShadow = mul (unity_Projector, v.vertex);
+				o.uvFalloff = mul (unity_ProjectorClip, v.vertex);
 
 				UNITY_TRANSFER_FOG(o,o.pos);
 

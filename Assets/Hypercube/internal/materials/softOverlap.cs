@@ -1,4 +1,27 @@
-﻿using UnityEngine;
+﻿/*  
+Hypercube: Volume Plugin is released under the MIT License:
+
+Copyright 2016 Looking Glass Factory, Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy 
+of this software and associated documentation files (the "Software"), to deal 
+in the Software without restriction, including without limitation the rights 
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies 
+of the Software, and to permit persons to whom the Software is furnished to do 
+so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all 
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR 
+PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS 
+BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE 
+OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+
+using UnityEngine;
 using System.Collections;
 using System;
 
@@ -15,6 +38,8 @@ namespace hypercube
         /// Provides a shader property that is set in the inspector
         /// and a material instantiated from the shader
         public hypercubeCamera cam;
+        public Shader softSliceShader;
+        public Shader softSliceOccludeShader;
 
         private Material m_Material;
 
@@ -24,16 +49,17 @@ namespace hypercube
             // Disable if we don't support image effects
             if (!SystemInfo.supportsImageEffects)
             {
-                enabled = false;
+                Destroy(this);
                 return;
             }
 
             // Disable the image effect if the shader can't
             // run on the users graphics card
-            if (!cam.softSliceShader || !cam.softSliceShader.isSupported)
-                enabled = false;
-            else
-                GetComponent<Camera>().depthTextureMode = DepthTextureMode.Depth;
+            if (softSliceShader && !softSliceShader.isSupported)
+                softSliceShader = null;
+
+            if (softSliceOccludeShader && !softSliceOccludeShader.isSupported)
+                softSliceOccludeShader = null;
         }
 
 
@@ -43,21 +69,33 @@ namespace hypercube
             {
                 if (m_Material == null)
                 {
-                    m_Material = new Material(cam.softSliceShader);
+                    if (cam.softSliceMethod == hypercubeCamera.renderMode.OCCLUDING && softSliceOccludeShader)
+                        m_Material = new Material(softSliceOccludeShader);
+                    else if (softSliceShader)
+                        m_Material = new Material(softSliceShader);
+                    else
+                    {
+                        Destroy(this);
+                        return null;
+                    }
+
                     m_Material.hideFlags = HideFlags.HideAndDontSave;
                 }
+                else
+                {
+                    if (cam.softSliceMethod == hypercubeCamera.renderMode.OCCLUDING && softSliceOccludeShader)
+                        m_Material.shader = softSliceOccludeShader;
+                    else if (softSliceShader)
+                        m_Material.shader = softSliceShader;
+                    else
+                        return null;
+                }
+
+
                 return m_Material;
             }
         }
 
-        //used to set how much 'fade' should be applied to each end of the slice
-        //for example a value of 5 will fade in 5 percent from the near and 5 from the far of the full slice leaving 90% as the unfaded 'base' of the slice
-        public void setShaderProperties(float p, Color blackPoint)
-        {
-            p = Mathf.Clamp(p, 0f, .5f);
-            material.SetFloat("_softPercent", p);
-            material.SetColor("_blackPoint", blackPoint);
-        }
 
         protected virtual void OnDestroy()
         {

@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
 #ifndef VACUUM_WIREFRAME_UNLIT_CGINC
 #define VACUUM_WIREFRAME_UNLIT_CGINC
 
@@ -115,7 +117,7 @@ vOutput vert(vInput v)
 	#endif
 
 
-	half3 worldPos = mul(_Object2World, v.vertex).xyz;
+	half3 worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
 
 	#if defined(V_WIRE_IBL_ON) || defined(V_WIRE_REFLECTION_ON)
 		half3 worldNormal = UnityObjectToWorldNormal(v.normal);

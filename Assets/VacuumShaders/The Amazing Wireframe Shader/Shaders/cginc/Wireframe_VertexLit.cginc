@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
 #ifndef VACUUM_WIREFRAME_VERTEXLIT_CGINC
 #define VACUUM_WIREFRAME_VERTEXLIT_CGINC
 
@@ -91,7 +93,7 @@ v2f vert (appdata_full v)
 	#endif
 
 	#ifdef V_WIRE_DYNAMIC_MASK_ON		
-		o.maskPos = mul(_Object2World, half4(v.vertex.xyz, 1)).xyz;
+		o.maskPos = mul(unity_ObjectToWorld, half4(v.vertex.xyz, 1)).xyz;
 	#endif
 
 

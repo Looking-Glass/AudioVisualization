@@ -1,4 +1,6 @@
-﻿// gradient bar shader (fragment shader, unlit) by mgear / unitycoder.com
+﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
+// gradient bar shader (fragment shader, unlit) by mgear / unitycoder.com
 
 Shader "Unitycoder/gradientBarUnlit" {
 	Properties {
@@ -47,7 +49,7 @@ SubShader
 			{
 				v2f o;
 				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
-				o.worldPos = mul(_Object2World, v.vertex).xyz;
+				o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
 				return o;
 			}
 			

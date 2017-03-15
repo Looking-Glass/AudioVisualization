@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
 #ifndef VACUUM_WIREFRAME_FORWARDBASE_CGINC
 #define VACUUM_WIREFRAME_FORWARDBASE_CGINC
 
@@ -151,7 +153,7 @@ vOutput vert(vInput v)
 
 
 	#if defined(V_WIRE_DYNAMIC_MASK_ON) || defined(V_WIRE_REFLECTION_ON)
-		half3 worldPos = mul(_Object2World, half4(v.vertex.xyz, 1)).xyz;
+		half3 worldPos = mul(unity_ObjectToWorld, half4(v.vertex.xyz, 1)).xyz;
 	#endif
 
 	float3 normal_WS = UnityObjectToWorldNormal(v.normal);
@@ -207,7 +209,7 @@ vOutput vert(vInput v)
 				o.vLight.rgb = ShadeSH9 (half4(normal_WS, 1.0));
 				
 				#ifdef VERTEXLIGHT_ON	
-					float3 pos_WS = mul(_Object2World, v.vertex).xyz;
+					float3 pos_WS = mul(unity_ObjectToWorld, v.vertex).xyz;
 			
 					o.vLight.rgb += Shade4PointLights ( unity_4LightPosX0, unity_4LightPosY0, unity_4LightPosZ0,
 					 								   unity_LightColor[0].rgb, unity_LightColor[1].rgb, unity_LightColor[2].rgb, unity_LightColor[3].rgb,

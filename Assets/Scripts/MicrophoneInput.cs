@@ -90,7 +90,7 @@ public class MicrophoneInput : MonoBehaviour {
 
 		float delay = 0.030f;
 		int microphoneSamples = Microphone.GetPosition (CurrentAudioInput);
-		//		Debug.Log ("Current samples: " + microphoneSamples);
+		Debug.Log ("Current samples: " + microphoneSamples);
 		if (microphoneSamples / freq > delay) {
 			if (!audioSauce.isPlaying) {
 				Debug.Log ("Starting thing");

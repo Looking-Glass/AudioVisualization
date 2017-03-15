@@ -4,19 +4,21 @@ using System.Collections;
 //inherit from this class to automatically receive touch events from the hypercube
 //alternatively, you can foreach loop on input.frontTouchScreen.touches or input.backTouchScreen.touches
 
-    public class touchscreenTarget : MonoBehaviour
+namespace hypercube
+{
+    public class touchScreenTarget : MonoBehaviour
     {
-        void OnEnable()
+        protected virtual void OnEnable()   //to use your own OnEnable use:   protected override void OnEnable()  {base.OnEnable()}
         {
-            hypercube.input._setTouchScreenTarget(this, true);
+            input._setTouchScreenTarget(this, true);
         }
-        void OnDisable()
+        protected virtual void OnDisable() //to use your own OnDisable use:   protected override void OnDisable()  {base.OnDisable()}
         {
-            hypercube.input._setTouchScreenTarget(this, false);
+            input._setTouchScreenTarget(this, false);
         }
-        void OnDestroy()
+        protected virtual void OnDestroy() //to use your own OnDestroy use:   protected override void OnDestroy()  {base.OnDestroy()}
         {
-            hypercube.input._setTouchScreenTarget(this, false);
+            input._setTouchScreenTarget(this, false);
         }
 
         public virtual void onTouchDown(hypercube.touch touch)
@@ -31,3 +33,4 @@ using System.Collections;
         {
         }
     }
+}
